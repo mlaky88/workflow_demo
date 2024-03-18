@@ -1,6 +1,6 @@
 # Github actions
 
-name: Github Actions Demo 2
+name: Github Actions Demo 3
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 
@@ -17,7 +17,7 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10]
+        python-version: [3.8, 3.9]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Add your steps here
