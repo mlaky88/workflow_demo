@@ -27,11 +27,11 @@ jobs:
       - name: Potisni na docker hub z akcijo
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
           registry: docker.io
           dockerfile: Dockerfile
           tags: $date
-          image: $REPONAME/python-app
+          image: ${{ env.REPONAME }}/python-app
 
         
