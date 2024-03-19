@@ -26,16 +26,16 @@ jobs:
 
       - name: Trenutni čas
         id: datum
-        run: echo "(date)"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
       
       - name: Zgradi docker sliko
         run: |
-          echo ${{ steps.datum.outputs.stdout }}
-          echo "docker build . --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}"
-          docker build . --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
+          echo ${{ steps.datum.outputs.date }}
+          echo "docker build . --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.date }}"
+          docker build . --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.date }}
 
       - name: Potisni docker sliko
         run: |
-          docker push $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
+          docker push $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.date }}
 
         
