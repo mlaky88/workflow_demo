@@ -32,6 +32,6 @@ jobs:
           registry: docker.io
           dockerfile: Dockerfile
           tags: $date
-          image: ${{ env.REPONAME }}
+          image: ${{env.DOCKER_USERNAME}}/${{ env.REPONAME }}
 
         
