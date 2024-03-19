@@ -20,10 +20,6 @@ jobs:
       - name: Checkout repozitorija
         uses: actions/checkout@v2
       
-      - name: Prijava v Docker
-        run: |
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-
       - name: Trenutni čas
         id: datum
         run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
@@ -33,7 +29,7 @@ jobs:
         with:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
-          repository: $REPONAME
+          registry: docker.io
           dockerfile: Dockerfile
           tags: $date
           image: $REPONAME/python-app
