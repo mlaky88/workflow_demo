@@ -1,0 +1,41 @@
+#Github actions deploy 
+
+name: Github Actions Deploy Demo
+
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  REPONAME: ${{ secrets.REPO_NAME }}
+on:
+  workflow_run:
+    workflows: ["Github Actions Python okolje"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repozitorija
+        uses: actions/checkout@v2
+      
+      - name: Prijava v Docker
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Trenutni čas
+        id: datum
+        run: echo "(date)"
+      
+      -name: Zgradi docker sliko
+        run: |
+          docker build - --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
+
+      -name: Potisni docker sliko
+        run: |
+          docker push $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
+
+        
