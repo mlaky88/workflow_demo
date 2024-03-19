@@ -30,7 +30,7 @@ jobs:
       
       - name: Zgradi docker sliko
         run: |
-          docker build - --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
+          docker build . --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
 
       - name: Potisni docker sliko
         run: |
