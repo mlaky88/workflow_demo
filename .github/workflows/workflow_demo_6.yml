@@ -32,6 +32,6 @@ jobs:
           registry: docker.io
           dockerfile: Dockerfile
           tags: $date
-          image: ${{ env.REPONAME }}/python-app
+          image: ${{ env.REPONAME }}
 
         
