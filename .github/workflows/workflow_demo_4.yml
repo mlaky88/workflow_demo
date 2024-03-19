@@ -7,7 +7,6 @@ jobs:
     name: Seštej 3 and 7
     runs-on: self-hosted
     steps:
-      - name: Zaženi matematično operacijo
       - shell: bash
         run: |
           expr 3 + 7 > math-homework.txt
