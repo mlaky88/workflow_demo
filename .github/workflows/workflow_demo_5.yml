@@ -30,11 +30,11 @@ jobs:
         id: datum
         run: echo "(date)"
       
-      -name: Zgradi docker sliko
+      - name: Zgradi docker sliko
         run: |
           docker build - --file Dockerfile --tag $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
 
-      -name: Potisni docker sliko
+      - name: Potisni docker sliko
         run: |
           docker push $DOCKER_USERNAME/$REPONAME:${{ steps.datum.outputs.stdout }}
 
