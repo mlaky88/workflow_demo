@@ -1,51 +1,52 @@
-name: Share data between jobs
+name: Deljenje podatkov med posli z uporabo artefaktov
 
 on: [push]
 
 jobs:
-  job_1:
+  posel_1:
     name: Seštej 3 and 7
     runs-on: self-hosted
     steps:
+      - name: Zaženi matematično operacijo
       - shell: bash
         run: |
           expr 3 + 7 > math-homework.txt
-      - name: Upload math result for job 1
+      - name: Naloži rezultat za posel 1
         uses: actions/upload-artifact@v4
         with:
-          name: homework_pre
-          path: math-homework.txt
+          name: naloga_pred
+          path: domaca-naloga.txt
 
-  job_2:
+  posel_2:
     name: Množi z 9
-    needs: job_1
+    needs: posel_1
     runs-on: self-hosted
     steps:
-      - name: Download math result for job 1
+      - name: Prenesi rezultat za posel 1
         uses: actions/download-artifact@v4
         with:
-          name: homework_pre
+          name: naloga_pred
       - shell: bash
         run: |
-          value=`cat math-homework.txt`
-          expr $value \* 9 > math-homework.txt
-      - name: Upload math result for job 2
+          value=`cat domaca-naloga.txt`
+          expr $value \* 9 > domaca-naloga.txt
+      - name: Naloži rezultat za posel 2
         uses: actions/upload-artifact@v4
         with:
-          name: homework_final
-          path: math-homework.txt
+          name: naloga_konec
+          path: domaca-naloga.txt
 
-  job_3:
+  posel_3:
     name: Prikaži rezultat
-    needs: job_2
+    needs: posel_2
     runs-on: self-hosted
     steps:
-      - name: Download math result for job 2
+      - name: Prenesi rezultat za posel 2
         uses: actions/download-artifact@v4
         with:
-          name: homework_final
-      - name: Print the final result
+          name: naloga_konec
+      - name: Izpiši končni rezultat
         shell: bash
         run: |
-          value=`cat math-homework.txt`
-          echo The result is $value
+          value=`cat domaca-naloga.txt`
+          echo Končni rezultat je $value
