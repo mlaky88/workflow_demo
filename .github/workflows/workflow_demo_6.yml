@@ -1,0 +1,41 @@
+#Github actions deploy 
+
+name: Github Actions Deploy Demo z uporabo akcije
+
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  REPONAME: ${{ secrets.REPO_NAME }}
+on:
+  workflow_run:
+    workflows: ["Github Actions Python okolje"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repozitorija
+        uses: actions/checkout@v2
+      
+      - name: Prijava v Docker
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Trenutni čas
+        id: datum
+        run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
+      
+      - name: Potisni na docker hub z akcijo
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
+          repository: $REPONAME
+          dockerfile: Dockerfile
+          tags: $date
+          image: $REPONAME/python-app
+
+        
