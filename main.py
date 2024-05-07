@@ -1,4 +1,4 @@
-def adeli(a,b):
+def adeli(a,b,c):
     return a/3
 
 def sestej(a, b):
