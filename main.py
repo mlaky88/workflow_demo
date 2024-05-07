@@ -1,3 +1,6 @@
+def deli(a,b):
+    return a/b
+
 def sestej(a, b):
     return a + b
 
