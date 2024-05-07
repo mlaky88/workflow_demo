@@ -12,5 +12,5 @@ def zmnozi(a, b):
 
 if __name__ == "__main__":
     while True:
-        print("Hello, World!")
+        print("Hello, uROS!")
 
