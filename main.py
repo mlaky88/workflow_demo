@@ -7,7 +7,7 @@ def sestej(a, b):
 def odstej(a, b):
     return a - b
 
-def zmnozi(a, b):
+def zmnozi(a, b,c):
     return a * b
 
 if __name__ == "__main__":
