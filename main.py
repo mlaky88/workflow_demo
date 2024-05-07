@@ -1,5 +1,5 @@
 def deli(a,b):
-    return a/b
+    return a/2
 
 def sestej(a, b):
     return a + b
