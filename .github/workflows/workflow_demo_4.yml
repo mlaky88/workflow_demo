@@ -5,7 +5,7 @@ on: [push]
 jobs:
   posel_1:
     name: Seštej 3 and 7
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - shell: bash
         run: |
@@ -19,7 +19,7 @@ jobs:
   posel_2:
     name: Množi z 9
     needs: posel_1
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Prenesi rezultat za posel 1
         uses: actions/download-artifact@v4

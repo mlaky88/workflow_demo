@@ -12,7 +12,7 @@ on:
 jobs:
   # The build job runs on an ubuntu-latest machine
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
