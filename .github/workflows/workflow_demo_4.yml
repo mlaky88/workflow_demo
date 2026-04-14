@@ -38,7 +38,7 @@ jobs:
   posel_3:
     name: Prikaži rezultat
     needs: posel_2
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Prenesi rezultat za posel 2
         uses: actions/download-artifact@v4
