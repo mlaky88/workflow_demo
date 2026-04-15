@@ -7,14 +7,15 @@ on:
     branches: [ test ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.8, 3.9, 3.10]
-    
+        ubuntu-version: [18.04, 20.04, 22.04]
+    runs-on: ${{ matrix.ubuntu-version }}
     steps:
       
       - uses: actions/checkout@v6
