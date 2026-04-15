@@ -11,13 +11,13 @@ on:
 
 jobs:
   build: 
-    runs-on: ubuntu-latest
+    runs-on: runner2
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v6
 
-      - name: Poženemo ukaz v terminalu a one-line script
+      - name: Poženemo ukaz v terminalu
         run: echo Hello, world!
 
       - name:  Poženemo večvrstični ukaz v terminalu
