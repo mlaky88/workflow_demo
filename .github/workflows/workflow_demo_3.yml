@@ -13,18 +13,18 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10]
-        ubuntu-version: [18.04, 20.04, 22.04]
+        python-version: [3.8, 3.9]
+        ubuntu-version: [ubuntu-22.04, ubuntu-latest]
     runs-on: ${{ matrix.ubuntu-version }}
     steps:
       
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - name: Izpis spremenljivke
         run: echo $GITHUB_WORKSPACE
 
       - name: Nastavi Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
       
