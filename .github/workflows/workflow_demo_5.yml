@@ -1,7 +1,6 @@
 #Github actions deploy 
 
-name: Github Actions Deploy Demo
-
+name: zgled5
 
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -9,13 +8,15 @@ env:
   REPONAME: ${{ secrets.REPO_NAME }}
 on:
   workflow_run:
-    workflows: ["Github Actions Python okolje"]
+    workflows: ["zgled2"]
     types:
       - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      build_date: ${{ steps.datum.outputs.date }}
     steps:
       - name: Checkout repozitorija
         uses: actions/checkout@v2
@@ -26,8 +27,9 @@ jobs:
 
       - name: Trenutni čas
         id: datum
-        #run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
-        run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
+        run: |
+          echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
+          echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_OUTPUT"
       
       - name: Zgradi docker sliko
         run: |
@@ -38,5 +40,11 @@ jobs:
       - name: Potisni docker sliko
         run: |
           docker push $DOCKER_USERNAME/$REPONAME:$date
+  release:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Izpis spremenljivke iz drugega joba
+        run: echo ${{needs.deploy.outputs.build_date}}
 
         
