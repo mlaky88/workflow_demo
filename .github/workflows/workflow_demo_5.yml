@@ -19,7 +19,7 @@ jobs:
       build_date: ${{ steps.datum.outputs.date }}
     steps:
       - name: Checkout repozitorija
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       
       - name: Prijava v Docker
         run: |

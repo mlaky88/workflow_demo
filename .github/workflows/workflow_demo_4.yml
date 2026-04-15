@@ -9,7 +9,7 @@ jobs:
     name: Seštej 3 and 7
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      - name: Poženemo ukaz v terminalu (seštevamo števila)
         run: |
           expr 3 + 7 > domaca-naloga.txt
       - name: Naloži rezultat za posel 1
@@ -27,7 +27,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: naloga_pred
-      - shell: bash
+      - name: Poženemo ukaz v terminalu (množimo z 9)
         run: |
           value=`cat domaca-naloga.txt`
           expr $value \* 9 > domaca-naloga.txt
@@ -47,7 +47,6 @@ jobs:
         with:
           name: naloga_konec
       - name: Izpiši končni rezultat
-        shell: bash
         run: |
           value=`cat domaca-naloga.txt`
           echo Končni rezultat je $value
