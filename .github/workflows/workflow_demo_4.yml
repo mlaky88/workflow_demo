@@ -2,7 +2,7 @@ name: zgled4
 
 on:
   push:
-    branches: test
+    branches: main
 
 jobs:
   job_1:
@@ -21,7 +21,7 @@ jobs:
   job_2:
     name: Množi z 9
     needs: job_1
-    runs-on: ubuntu-latest
+    runs-on: runner1
     steps:
       - name: Prenesi rezultat za posel 1
         uses: actions/download-artifact@v4
@@ -40,7 +40,7 @@ jobs:
   job_3:
     name: Prikaži rezultat
     needs: job_2
-    runs-on: ubuntu-latest
+    runs-on: runner2
     steps:
       - name: Prenesi rezultat za posel 2
         uses: actions/download-artifact@v4
